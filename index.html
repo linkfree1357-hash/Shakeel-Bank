@@ -1,289 +1,428 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment Portal</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shakeel Store - Payment Portal</title>
 
 <style>
+:root{
+    --primary:#3b82f6;
+    --primary2:#60a5fa;
+    --green:#22c55e;
+    --glass:rgba(255,255,255,.55);
+    --border:rgba(255,255,255,.45);
+    --shadow:0 15px 40px rgba(59,130,246,.12);
+}
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-
-  background: linear-gradient(135deg,#ffffff,#dbeafe,#93c5fd);
+    font-family:Inter,Segoe UI,sans-serif;
+    min-height:100vh;
+    background:
+    linear-gradient(140deg,#ffffff 0%, #eef6ff 45%, #dcecff 100%);
+    color:#1e293b;
+    padding:18px;
 }
 
-/* MAIN CONTAINER */
 .container{
-  width:100%;
-  max-width:800px;
-
-  background:rgba(255,255,255,0.75);
-  backdrop-filter:blur(18px);
-
-  border-radius:30px;
-  padding:25px;
-
-  border:1px solid #bfdbfe;
-  box-shadow:0 10px 35px rgba(0,0,0,0.1);
+    max-width:1100px;
+    margin:auto;
 }
 
-/* LOGO */
-.logo{
-  text-align:center;
-  margin-bottom:20px;
+.glass{
+    background:var(--glass);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
 }
 
-.logo img{
-  width:100%;
-  max-width:340px;
-  aspect-ratio:3.2/1;
-  object-fit:contain;
-
-  background:white;
-  padding:10px;
-  border-radius:18px;
-  border:1px solid #cbd5e1;
+.header{
+    padding:30px;
+    border-radius:30px;
+    text-align:center;
+    margin-bottom:25px;
+    animation:fadeUp .8s ease;
 }
 
-.title{
-  font-size:28px;
-  font-weight:bold;
-  color:#1e3a8a;
+.logo-box{
+    width:min(320px,100%);
+    aspect-ratio:3.2/1;
+    margin:auto;
+    overflow:hidden;
+    border-radius:20px;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+h1{
+    margin-top:22px;
+    font-size:clamp(1.8rem,4vw,2.5rem);
 }
 
 .subtitle{
-  font-size:14px;
-  color:#475569;
+    color:#64748b;
+    margin-top:8px;
 }
 
-/* BANK CARD */
-.bank{
-  margin-top:20px;
-  padding:20px;
-
-  background:white;
-  border-radius:25px;
-
-  border:1px solid #e0e7ff;
-
-  box-shadow:0 5px 15px rgba(59,130,246,0.1);
+.bank-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:22px;
 }
 
-.bank h2{
-  color:#2563eb;
-  margin-bottom:15px;
+.bank-card{
+    padding:25px;
+    border-radius:28px;
+    animation:fadeUp .7s ease;
 }
 
-/* ROW */
-.row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.bank-name{
+    font-size:1.3rem;
+    color:var(--primary);
+    font-weight:700;
+    margin-bottom:18px;
+}
 
-  padding:12px;
-  margin-bottom:10px;
-
-  background:#f8fafc;
-  border-radius:15px;
-  border:1px solid #e2e8f0;
+.detail{
+    margin-bottom:15px;
 }
 
 .label{
-  color:#64748b;
-  font-weight:bold;
+    font-size:.85rem;
+    color:#64748b;
+    margin-bottom:5px;
 }
 
-/* COPY BUTTON */
+.row{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.value{
+flex:1;
+background:rgba(255,255,255,.7);
+padding:14px;
+border-radius:16px;
+font-weight:600;
+word-break:break-word;
+}
+
 .copy-btn{
-  padding:8px 12px;
-  border:none;
-  border-radius:10px;
-
-  background:#3b82f6;
-  color:white;
-
-  cursor:pointer;
-  font-weight:bold;
+border:none;
+background:var(--primary);
+color:white;
+padding:14px 16px;
+border-radius:16px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+min-width:110px;
 }
 
 .copy-btn:hover{
-  background:#1d4ed8;
+transform:translateY(-2px);
 }
 
-/* SEND BUTTON */
-.send-btn{
-  width:100%;
-  margin-top:20px;
-  padding:15px;
-
-  border:none;
-  border-radius:15px;
-
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:white;
-
-  font-size:16px;
-  font-weight:bold;
-
-  cursor:pointer;
-  transition:0.3s;
+.copy-btn:active{
+transform:scale(.92);
 }
 
-.send-btn:hover{
-  transform:scale(1.02);
+.copy-btn.copied{
+background:#0ea5e9;
+animation:pop .4s;
 }
 
-/* TOAST */
+.whatsapp{
+margin-top:35px;
+padding:28px;
+border-radius:30px;
+text-align:center;
+}
+
+.wa-btn{
+width:100%;
+max-width:500px;
+border:none;
+background:var(--green);
+color:white;
+padding:18px;
+border-radius:22px;
+font-size:1rem;
+font-weight:700;
+cursor:pointer;
+transition:.35s;
+}
+
+.wa-btn:hover{
+transform:translateY(-4px);
+}
+
 .toast{
-  position:fixed;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%) translateY(100px);
-
-  background:#111827;
-  color:white;
-
-  padding:12px 18px;
-  border-radius:12px;
-
-  opacity:0;
-  transition:0.4s;
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%) translateY(120px);
+background:#0f172a;
+color:white;
+padding:14px 20px;
+border-radius:14px;
+font-size:.95rem;
+transition:.45s;
+z-index:1000;
+opacity:0;
 }
 
 .toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+transform:translateX(-50%) translateY(0);
+opacity:1;
 }
 
+@keyframes pop{
+50%{
+transform:scale(1.1);
+}
+100%{
+transform:scale(1);
+}
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(25px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+.header,
+.bank-card,
+.whatsapp{
+padding:20px;
+}
+
+.row{
+flex-direction:column;
+align-items:stretch;
+}
+
+.copy-btn{
+width:100%;
+}
+
+}
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-  <!-- LOGO -->
-  <div class="logo">
-    <img src="logo.png">
-    <div class="title">Payment Portal</div>
-    <div class="subtitle">Send Payment Proof via WhatsApp</div>
-  </div>
+<header class="header glass">
 
-  <!-- COMMERCIAL BANK -->
-  <div class="bank">
-    <h2>COMMERCIAL BANK</h2>
+<div class="logo-box">
+<img src="logo.png" alt="Shakeel Store Logo">
+</div>
 
-    <div class="row">
-      <div><span class="label">Name:</span> MHA. Shakeel</div>
-      <button class="copy-btn" onclick="copy('MHA. Shakeel')">Copy</button>
-    </div>
+<h1>Payment Portal</h1>
+<div class="subtitle">
+Secure Bank Transfer & Payment Proof System
+</div>
 
-    <div class="row">
-      <div><span class="label">A/C:</span> 1000965986</div>
-      <button class="copy-btn" onclick="copy('1000965986')">Copy</button>
-    </div>
+</header>
 
-    <div class="row">
-      <div><span class="label">Branch:</span> Kattankudy</div>
-      <button class="copy-btn" onclick="copy('Kattankudy')">Copy</button>
-    </div>
-  </div>
 
-  <!-- AMANA BANK -->
-  <div class="bank">
-    <h2>AMANA BANK</h2>
+<section class="bank-grid">
 
-    <div class="row">
-      <div><span class="label">Name:</span> MHA. Shakeel</div>
-      <button class="copy-btn" onclick="copy('MHA. Shakeel')">Copy</button>
-    </div>
+<div class="bank-card glass">
 
-    <div class="row">
-      <div><span class="label">A/C:</span> 001-0274441-002</div>
-      <button class="copy-btn" onclick="copy('001-0274441-002')">Copy</button>
-    </div>
+<div class="bank-name">COMMERCIAL BANK</div>
 
-    <div class="row">
-      <div><span class="label">Branch:</span> Kattankudy</div>
-      <button class="copy-btn" onclick="copy('Kattankudy')">Copy</button>
-    </div>
-  </div>
+<div class="detail">
+<div class="label">Name</div>
+<div class="row">
+<div class="value">MHA. Shakeel</div>
+<button class="copy-btn" data-copy="MHA. Shakeel">Copy Name</button>
+</div>
+</div>
 
-  <!-- BOC -->
-  <div class="bank">
-    <h2>BOC</h2>
+<div class="detail">
+<div class="label">Account Number</div>
+<div class="row">
+<div class="value">1000965986</div>
+<button class="copy-btn" data-copy="1000965986">Copy A/C</button>
+</div>
+</div>
 
-    <div class="row">
-      <div><span class="label">Name:</span> MHA. Shakeel</div>
-      <button class="copy-btn" onclick="copy('MHA. Shakeel')">Copy</button>
-    </div>
-
-    <div class="row">
-      <div><span class="label">A/C:</span> 88432526</div>
-      <button class="copy-btn" onclick="copy('88432526')">Copy</button>
-    </div>
-
-    <div class="row">
-      <div><span class="label">Branch:</span> Kattankudy</div>
-      <button class="copy-btn" onclick="copy('Kattankudy')">Copy</button>
-    </div>
-  </div>
-
-  <!-- SEND PROOF -->
-  <button class="send-btn" onclick="sendWhatsApp()">
-    📤 Send Payment Proof via WhatsApp
-  </button>
+<div class="detail">
+<div class="label">Branch</div>
+<div class="row">
+<div class="value">Kattankudy</div>
+<button class="copy-btn" data-copy="Kattankudy">Copy Branch</button>
+</div>
+</div>
 
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">Copied ✓</div>
+
+<div class="bank-card glass">
+
+<div class="bank-name">AMANA BANK</div>
+
+<div class="detail">
+<div class="label">Name</div>
+<div class="row">
+<div class="value">MHA. Shakeel</div>
+<button class="copy-btn" data-copy="MHA. Shakeel">Copy Name</button>
+</div>
+</div>
+
+<div class="detail">
+<div class="label">Account Number</div>
+<div class="row">
+<div class="value">001-0274441-002</div>
+<button class="copy-btn" data-copy="001-0274441-002">Copy A/C</button>
+</div>
+</div>
+
+<div class="detail">
+<div class="label">Branch</div>
+<div class="row">
+<div class="value">Kattankudy</div>
+<button class="copy-btn" data-copy="Kattankudy">Copy Branch</button>
+</div>
+</div>
+
+</div>
+
+
+<div class="bank-card glass">
+
+<div class="bank-name">BOC</div>
+
+<div class="detail">
+<div class="label">Name</div>
+<div class="row">
+<div class="value">MHA. Shakeel</div>
+<button class="copy-btn" data-copy="MHA. Shakeel">Copy Name</button>
+</div>
+</div>
+
+<div class="detail">
+<div class="label">Account Number</div>
+<div class="row">
+<div class="value">88432526</div>
+<button class="copy-btn" data-copy="88432526">Copy A/C</button>
+</div>
+</div>
+
+<div class="detail">
+<div class="label">Branch</div>
+<div class="row">
+<div class="value">Kattankudy</div>
+<button class="copy-btn" data-copy="Kattankudy">Copy Branch</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="whatsapp glass">
+
+<button class="wa-btn" id="waBtn">
+📤 Send Payment Proof via WhatsApp
+</button>
+
+</section>
+
+</div>
+
+
+<div class="toast" id="toast">
+Copied Successfully
+</div>
 
 <script>
 
-function copy(text){
-  navigator.clipboard.writeText(text);
+const toast=document.getElementById('toast');
 
-  let toast=document.getElementById("toast");
-  toast.innerText="Copied ✓";
-  toast.classList.add("show");
+function showToast(){
+toast.classList.add('show');
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },1500);
+setTimeout(()=>{
+toast.classList.remove('show');
+},2000);
 }
 
-/* WHATSAPP SEND */
-function sendWhatsApp(){
+document.querySelectorAll('.copy-btn').forEach(button=>{
 
-  let message = 
-`Hello Shakeel Store 👋
+button.addEventListener('click',async()=>{
 
-I have made a payment.
+let value=button.dataset.copy;
 
+try{
+
+await navigator.clipboard.writeText(value);
+
+let original=button.innerText;
+
+button.classList.add('copied');
+button.innerText='Copied ✓';
+
+showToast();
+
+setTimeout(()=>{
+button.classList.remove('copied');
+button.innerText=original;
+},1800);
+
+}catch(err){
+alert("Copy failed");
+}
+
+});
+
+});
+
+document.getElementById("waBtn")
+.addEventListener("click",()=>{
+
+const phone="94770578483";
+
+const msg=`Hello Shakeel Store 👋
+I have completed my payment.
 Please find my payment receipt attached.
-
 Thank you.`;
 
-  let phone = "+94 77 057 8483"; // 👉 change this
+window.open(
+`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,
+'_blank'
+);
 
-  let url = "https://wa.me/"+phone+"?text="+encodeURIComponent(message);
-
-  window.open(url,"_blank");
-}
+});
 
 </script>
 
 </body>
-</html></html>
+</html>
