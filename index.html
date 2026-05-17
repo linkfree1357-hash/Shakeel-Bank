@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shakeel Store Payment Portal</title>
+<title>Payment Portal</title>
 
 <style>
 *{
@@ -19,30 +19,29 @@ body{
   justify-content:center;
   align-items:center;
   padding:20px;
-  background:linear-gradient(135deg,#0f172a,#111827);
-  color:white;
+
+  background: linear-gradient(135deg,#ffffff,#dbeafe,#93c5fd);
 }
 
-/* MAIN BOX */
+/* MAIN CONTAINER */
 .container{
   width:100%;
-  max-width:700px;
-  padding:25px;
+  max-width:800px;
+
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(18px);
+
   border-radius:30px;
+  padding:25px;
 
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.12);
-
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  border:1px solid #bfdbfe;
+  box-shadow:0 10px 35px rgba(0,0,0,0.1);
 }
 
 /* LOGO */
 .logo{
   text-align:center;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 .logo img{
@@ -51,39 +50,39 @@ body{
   aspect-ratio:3.2/1;
   object-fit:contain;
 
-  background:rgba(255,255,255,0.08);
-  padding:12px;
-  border-radius:20px;
-
-  border:1px solid rgba(255,255,255,0.1);
+  background:white;
+  padding:10px;
+  border-radius:18px;
+  border:1px solid #cbd5e1;
 }
 
 .title{
   font-size:28px;
   font-weight:bold;
-  margin-top:10px;
+  color:#1e3a8a;
 }
 
 .subtitle{
-  color:#94a3b8;
   font-size:14px;
-  margin-top:5px;
+  color:#475569;
 }
 
 /* BANK CARD */
 .bank{
   margin-top:20px;
   padding:20px;
+
+  background:white;
   border-radius:25px;
 
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
+  border:1px solid #e0e7ff;
+
+  box-shadow:0 5px 15px rgba(59,130,246,0.1);
 }
 
 .bank h2{
-  color:#38bdf8;
+  color:#2563eb;
   margin-bottom:15px;
-  font-size:22px;
 }
 
 /* ROW */
@@ -95,44 +94,54 @@ body{
   padding:12px;
   margin-bottom:10px;
 
+  background:#f8fafc;
   border-radius:15px;
-  background:rgba(255,255,255,0.04);
+  border:1px solid #e2e8f0;
 }
 
 .label{
-  color:#94a3b8;
+  color:#64748b;
   font-weight:bold;
 }
 
 /* COPY BUTTON */
 .copy-btn{
-  padding:10px 14px;
+  padding:8px 12px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
 
-  background:rgba(56,189,248,0.25);
+  background:#3b82f6;
   color:white;
-  font-weight:bold;
 
   cursor:pointer;
-  transition:0.25s;
+  font-weight:bold;
 }
 
 .copy-btn:hover{
-  background:#38bdf8;
-  transform:scale(1.05);
+  background:#1d4ed8;
 }
 
-/* COPIED ANIMATION */
-.copy-btn.copied{
-  background:#22c55e !important;
-  animation:pop 0.4s ease;
+/* SEND BUTTON */
+.send-btn{
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+
+  border:none;
+  border-radius:15px;
+
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:white;
+
+  font-size:16px;
+  font-weight:bold;
+
+  cursor:pointer;
+  transition:0.3s;
 }
 
-@keyframes pop{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1);}
+.send-btn:hover{
+  transform:scale(1.02);
 }
 
 /* TOAST */
@@ -142,9 +151,11 @@ body{
   left:50%;
   transform:translateX(-50%) translateY(100px);
 
-  background:rgba(0,0,0,0.7);
-  padding:14px 20px;
-  border-radius:15px;
+  background:#111827;
+  color:white;
+
+  padding:12px 18px;
+  border-radius:12px;
 
   opacity:0;
   transition:0.4s;
@@ -164,10 +175,9 @@ body{
 
   <!-- LOGO -->
   <div class="logo">
-    <img src="logo.png" alt="Logo">
-
+    <img src="logo.png">
     <div class="title">Payment Portal</div>
-    <div class="subtitle">Secure Bank Transfer Details</div>
+    <div class="subtitle">Send Payment Proof via WhatsApp</div>
   </div>
 
   <!-- COMMERCIAL BANK -->
@@ -176,17 +186,17 @@ body{
 
     <div class="row">
       <div><span class="label">Name:</span> MHA. Shakeel</div>
-      <button class="copy-btn" onclick="copy(this,'MHA. Shakeel')">Copy</button>
+      <button class="copy-btn" onclick="copy('MHA. Shakeel')">Copy</button>
     </div>
 
     <div class="row">
-      <div><span class="label">A/C No:</span> 1000965986</div>
-      <button class="copy-btn" onclick="copy(this,'1000965986')">Copy</button>
+      <div><span class="label">A/C:</span> 1000965986</div>
+      <button class="copy-btn" onclick="copy('1000965986')">Copy</button>
     </div>
 
     <div class="row">
       <div><span class="label">Branch:</span> Kattankudy</div>
-      <button class="copy-btn" onclick="copy(this,'Kattankudy')">Copy</button>
+      <button class="copy-btn" onclick="copy('Kattankudy')">Copy</button>
     </div>
   </div>
 
@@ -196,17 +206,17 @@ body{
 
     <div class="row">
       <div><span class="label">Name:</span> MHA. Shakeel</div>
-      <button class="copy-btn" onclick="copy(this,'MHA. Shakeel')">Copy</button>
+      <button class="copy-btn" onclick="copy('MHA. Shakeel')">Copy</button>
     </div>
 
     <div class="row">
-      <div><span class="label">A/C No:</span> 001-0274441-002</div>
-      <button class="copy-btn" onclick="copy(this,'001-0274441-002')">Copy</button>
+      <div><span class="label">A/C:</span> 001-0274441-002</div>
+      <button class="copy-btn" onclick="copy('001-0274441-002')">Copy</button>
     </div>
 
     <div class="row">
       <div><span class="label">Branch:</span> Kattankudy</div>
-      <button class="copy-btn" onclick="copy(this,'Kattankudy')">Copy</button>
+      <button class="copy-btn" onclick="copy('Kattankudy')">Copy</button>
     </div>
   </div>
 
@@ -216,50 +226,64 @@ body{
 
     <div class="row">
       <div><span class="label">Name:</span> MHA. Shakeel</div>
-      <button class="copy-btn" onclick="copy(this,'MHA. Shakeel')">Copy</button>
+      <button class="copy-btn" onclick="copy('MHA. Shakeel')">Copy</button>
     </div>
 
     <div class="row">
-      <div><span class="label">A/C No:</span> 88432526</div>
-      <button class="copy-btn" onclick="copy(this,'88432526')">Copy</button>
+      <div><span class="label">A/C:</span> 88432526</div>
+      <button class="copy-btn" onclick="copy('88432526')">Copy</button>
     </div>
 
     <div class="row">
       <div><span class="label">Branch:</span> Kattankudy</div>
-      <button class="copy-btn" onclick="copy(this,'Kattankudy')">Copy</button>
+      <button class="copy-btn" onclick="copy('Kattankudy')">Copy</button>
     </div>
   </div>
+
+  <!-- SEND PROOF -->
+  <button class="send-btn" onclick="sendWhatsApp()">
+    📤 Send Payment Proof via WhatsApp
+  </button>
 
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">Copied Successfully ✓</div>
+<div class="toast" id="toast">Copied ✓</div>
 
 <script>
 
-function copy(btn,text){
-
+function copy(text){
   navigator.clipboard.writeText(text);
 
-  btn.classList.add("copied");
-  let old = btn.innerText;
-  btn.innerText = "Copied ✓";
-
-  setTimeout(()=>{
-    btn.classList.remove("copied");
-    btn.innerText = old;
-  },1200);
-
-  let toast = document.getElementById("toast");
+  let toast=document.getElementById("toast");
+  toast.innerText="Copied ✓";
   toast.classList.add("show");
 
   setTimeout(()=>{
     toast.classList.remove("show");
   },1500);
+}
 
+/* WHATSAPP SEND */
+function sendWhatsApp(){
+
+  let message = 
+`Hello Shakeel Store 👋
+
+I have made a payment.
+
+Please find my payment receipt attached.
+
+Thank you.`;
+
+  let phone = "+94 77 057 8483"; // 👉 change this
+
+  let url = "https://wa.me/"+phone+"?text="+encodeURIComponent(message);
+
+  window.open(url,"_blank");
 }
 
 </script>
 
 </body>
-</html>
+</html></html>
