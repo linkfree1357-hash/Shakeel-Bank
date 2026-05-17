@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakeel Store Payment Portal</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:linear-gradient(135deg,#0f172a,#111827);
+  color:white;
+}
+
+/* MAIN BOX */
+.container{
+  width:100%;
+  max-width:700px;
+  padding:25px;
+  border-radius:30px;
+
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* LOGO */
+.logo{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo img{
+  width:100%;
+  max-width:340px;
+  aspect-ratio:3.2/1;
+  object-fit:contain;
+
+  background:rgba(255,255,255,0.08);
+  padding:12px;
+  border-radius:20px;
+
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.title{
+  font-size:28px;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.subtitle{
+  color:#94a3b8;
+  font-size:14px;
+  margin-top:5px;
+}
+
+/* BANK CARD */
+.bank{
+  margin-top:20px;
+  padding:20px;
+  border-radius:25px;
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.bank h2{
+  color:#38bdf8;
+  margin-bottom:15px;
+  font-size:22px;
+}
+
+/* ROW */
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:12px;
+  margin-bottom:10px;
+
+  border-radius:15px;
+  background:rgba(255,255,255,0.04);
+}
+
+.label{
+  color:#94a3b8;
+  font-weight:bold;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+
+  background:rgba(56,189,248,0.25);
+  color:white;
+  font-weight:bold;
+
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.copy-btn:hover{
+  background:#38bdf8;
+  transform:scale(1.05);
+}
+
+/* COPIED ANIMATION */
+.copy-btn.copied{
+  background:#22c55e !important;
+  animation:pop 0.4s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%) translateY(100px);
+
+  background:rgba(0,0,0,0.7);
+  padding:14px 20px;
+  border-radius:15px;
+
+  opacity:0;
+  transition:0.4s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="logo.png" alt="Logo">
+
+    <div class="title">Payment Portal</div>
+    <div class="subtitle">Secure Bank Transfer Details</div>
+  </div>
+
+  <!-- COMMERCIAL BANK -->
+  <div class="bank">
+    <h2>COMMERCIAL BANK</h2>
+
+    <div class="row">
+      <div><span class="label">Name:</span> MHA. Shakeel</div>
+      <button class="copy-btn" onclick="copy(this,'MHA. Shakeel')">Copy</button>
+    </div>
+
+    <div class="row">
+      <div><span class="label">A/C No:</span> 1000965986</div>
+      <button class="copy-btn" onclick="copy(this,'1000965986')">Copy</button>
+    </div>
+
+    <div class="row">
+      <div><span class="label">Branch:</span> Kattankudy</div>
+      <button class="copy-btn" onclick="copy(this,'Kattankudy')">Copy</button>
+    </div>
+  </div>
+
+  <!-- AMANA BANK -->
+  <div class="bank">
+    <h2>AMANA BANK</h2>
+
+    <div class="row">
+      <div><span class="label">Name:</span> MHA. Shakeel</div>
+      <button class="copy-btn" onclick="copy(this,'MHA. Shakeel')">Copy</button>
+    </div>
+
+    <div class="row">
+      <div><span class="label">A/C No:</span> 001-0274441-002</div>
+      <button class="copy-btn" onclick="copy(this,'001-0274441-002')">Copy</button>
+    </div>
+
+    <div class="row">
+      <div><span class="label">Branch:</span> Kattankudy</div>
+      <button class="copy-btn" onclick="copy(this,'Kattankudy')">Copy</button>
+    </div>
+  </div>
+
+  <!-- BOC -->
+  <div class="bank">
+    <h2>BOC</h2>
+
+    <div class="row">
+      <div><span class="label">Name:</span> MHA. Shakeel</div>
+      <button class="copy-btn" onclick="copy(this,'MHA. Shakeel')">Copy</button>
+    </div>
+
+    <div class="row">
+      <div><span class="label">A/C No:</span> 88432526</div>
+      <button class="copy-btn" onclick="copy(this,'88432526')">Copy</button>
+    </div>
+
+    <div class="row">
+      <div><span class="label">Branch:</span> Kattankudy</div>
+      <button class="copy-btn" onclick="copy(this,'Kattankudy')">Copy</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Copied Successfully ✓</div>
+
+<script>
+
+function copy(btn,text){
+
+  navigator.clipboard.writeText(text);
+
+  btn.classList.add("copied");
+  let old = btn.innerText;
+  btn.innerText = "Copied ✓";
+
+  setTimeout(()=>{
+    btn.classList.remove("copied");
+    btn.innerText = old;
+  },1200);
+
+  let toast = document.getElementById("toast");
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },1500);
+
+}
+
+</script>
+
+</body>
+</html>
